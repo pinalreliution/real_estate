@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_property_types_tree" model="ir.ui.view">
+        <field name="name">Property Types</field>
+        <field name="model">property.types</field>
+        <field name="arch" type="xml">
+            <tree string="Property Types">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_property_types_form" model="ir.ui.view">
+        <field name="name">Property Types</field>
+        <field name="model">property.types</field>
+        <field name="arch" type="xml">
+            <form string="Property Types">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(real_estate.action_offers_button)d"
+                                type="action"
+                                class="oe_stat_button"
+                                icon="fa-globe icon">
+                            <div class="o_field_widget o_stat_info">
+                                <field name="offer_count" class="o_stat_value"/>
+                                <span class="o_stat_text">Offers</span>
+                            </div>
+                        </button>
+                    </div>
+                    <h1 class="o_row">
+                        <field name="name"/>
+                    </h1>
+                    <notebook>
+                        <page string="Properties">
+                            <field name="property_ids">
+                                <tree>
+                                    <field name="name" string="Title"/>
+                                    <field name="expected_price"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_property_types_search" model="ir.ui.view">
+        <field name="name">Property Type</field>
+        <field name="model">property.types</field>
+        <field name="arch" type="xml">
+            <search string="Property Type">
+                <filter name="filter_state" string="Available"/>
+                <group string="Group By">
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_offers_button" model="ir.actions.act_window">
+        <field name="name">Offers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">property.offers</field>
+        <field name="domain">[('property_type_id', '=', active_id)]</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_property_types" model="ir.actions.act_window">
+        <field name="name">Property Types</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">property.types</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="real_estate_sub_menu_setting"
+              name="Settings"
+              parent="real_estate.real_estate_menu"
+              sequence="2"/>
+
+    <menuitem id="setting_sub_menu_property_types"
+              name="Property Types"
+              parent="real_estate.real_estate_sub_menu_setting"
+              action="action_property_types"
+              sequence="1"/>
+</odoo>
