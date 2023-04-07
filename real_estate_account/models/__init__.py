@@ -1,1 +1,1 @@
-from . import real_estate_account
+from . import real_estate_accounting

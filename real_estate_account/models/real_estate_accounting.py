@@ -18,5 +18,30 @@ class InheritRealEstate(models.Model):
 
     def action_sold(self):
         record = super(InheritRealEstate, self).action_sold()
-        print(record)
+        self.env["account.move"].create(
+            {
+                "partner_id": self.buyer_id.id,
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    ({
+                        "name": self.name,
+                        "quantity": 1.0,
+                        "price_unit": self.selling_price * 0.6,
+                    }),
+                    ({
+                        "name": "Administrative Fees",
+                        "quantity": 1.0,
+                        "price_unit": 100,
+                    }),
+                ],
+            }
+        )
         return record
+
+        # self.env["account.move"].create(
+        #     {
+        #         "partner_id": self.buyer_id.id,
+        #         "move_type": 'out_invoice',
+        #     }
+        # )
+        # return super(InheritRealEstate, self).action_sold()
