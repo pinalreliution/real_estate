@@ -23,16 +23,11 @@ class PropertyTypes(models.Model):
     sequence = fields.Integer(string='Sequence')
     offer_ids = fields.One2many(comodel_name='property.offers', inverse_name='property_type_id', string='Offers')
     offer_count = fields.Integer(compute="_compute_offer_ids", string='Offer Count')
+    active = fields.Boolean('Active')
 
-    # _sql_constrains = [
-    #     ('name_unique', 'unique(name)', 'A property type name must be unique.')
-    # ]
-
-    @api.constrains('name')
-    def _check_name(self):
-        for rec in self:
-            if rec.name == self.name:
-                raise ValidationError("A Property Type name must be unique.")
+    _sql_constrains = [
+        ('check_name', 'UNIQUE(name)', 'A property type name must be unique.')
+    ]
 
     @api.depends("offer_ids")
     def _compute_offer_ids(self):

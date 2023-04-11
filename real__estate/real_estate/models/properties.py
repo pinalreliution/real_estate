@@ -15,12 +15,13 @@ from odoo.addons.payment import utils as payment_utils
 
 class RealEstate(models.Model):
     _name = "real.estate"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Real Estate"
     _order = 'property_type_id desc'
 
     name = fields.Char(string='Property Type', copy=False, required=True, readonly=False, default=lambda self: _('New'))
     description = fields.Text(string='Description', required=False)
-    postcode = fields.Char(string='Postcode', required=True)
+    postcode = fields.Char(string='Postcode', required=True, tracking=True)
     date_availability = fields.Date(string='Available Form', copy=False, default=lambda self: fields.Date.today())
     expected_price = fields.Float(string='Expected Price', required=True)
     selling_price = fields.Float(string='Selling Price', readonly=True, copy=False)
@@ -36,6 +37,7 @@ class RealEstate(models.Model):
         ('west', 'West'),
         ('east', 'East')
     ])
+    # Archive Field
     # active = fields.Boolean('Active')
     state = fields.Selection(string='Status', required=True, copy=False, selection=[
         ('new', 'New'),
@@ -119,7 +121,7 @@ class RealEstate(models.Model):
     @api.constrains('best_price')
     def _check_best_price(self):
         for price3 in self:
-            if price3.best_price < 0 or price3.best_price == 0:
+            if price3.best_price < 0:
                 raise ValidationError(_("A property best price must be strictly positive."))
 
     @api.ondelete(at_uninstall=False)

@@ -5,12 +5,13 @@
 {
     'name': 'Real Estate ',
     'version': '1.0.1',
-    'category': '',
+    'category': 'Real Estate/Brokerage',
     'summary': '',
     'description': """ """,
-    'depends': ['sale', 'base'],
+    'depends': ['sale', 'base', 'mail'],
     'data': [
         'security/ir.model.access.csv',
+        'security/real_estate_security.xml',
         'views/real_estate_properties.xml',
         'views/real_estate_property_types.xml',
         'views/real_estate_property_tags.xml',
