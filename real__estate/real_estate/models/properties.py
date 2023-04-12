@@ -53,6 +53,8 @@ class RealEstate(models.Model):
     offer_ids = fields.One2many(comodel_name="property.offers", inverse_name="property_id", string="Offers")
     total_area = fields.Float(compute="_compute_total_area", store=True, string='Total Area(sqr)')
     best_price = fields.Float(compute="_compute_offer_ids_price", store=True, string='Best Price')
+    company_id = fields.Many2one(comodel_name='res.company', string='Company', required=True,
+                                 default=lambda self: self.env.company)
 
     # _sql_constraints = [
     #     ('check_expected_price', 'CHECK(expected_price > 0)',

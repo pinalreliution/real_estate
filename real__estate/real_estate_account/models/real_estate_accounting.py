@@ -18,7 +18,10 @@ class InheritRealEstate(models.Model):
 
     def action_sold(self):
         record = super(InheritRealEstate, self).action_sold()
-        self.env["account.move"].create(
+        # self.check_access_rights('write')
+        # self.check_access_rule('write')
+        # sudo() method :- ignores all access rights and record rules
+        self.env["account.move"].sudo().create(
             {
                 "partner_id": self.buyer_id.id,
                 "move_type": "out_invoice",
