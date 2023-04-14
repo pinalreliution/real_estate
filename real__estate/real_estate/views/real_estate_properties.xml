@@ -7,6 +7,7 @@
             <tree string="Properties" class="font-weight-bold"
                   decoration-success="state in ['offer_received','offer_accepted']"
                   decoration-muted="state == 'sold'">
+                <field name="pro_seq"/>
                 <field name="name" string="Title"/>
                 <field name="property_type_id"/>
                 <field name="postcode"/>
@@ -81,8 +82,11 @@
                 </header>
                 <sheet>
                     <h1 class="o_row">
-                        <field name="name"/>
+                        <field name="pro_seq"/>
                     </h1>
+                    <h2>
+                        <field name="name"/>
+                    </h2>
                     <group>
                         <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                     </group>
@@ -180,6 +184,7 @@
         <field name="context">{'search_default_filter_state' : 1, 'search_default_filter_property_type_id' : 1}</field>
     </record>
 
+
     <menuitem id="real_estate_menu"
               name="Real Estate"
               web_icon="real_estate,static/description/icon.png"
@@ -195,4 +200,11 @@
               parent="real_estate.real_estate_sub_menu_advertise"
               action="real_estate.action_properties"
               sequence="2"/>
+
+    <menuitem id="advertise_sub_menu_create_token"
+              name="Create Token"
+              parent="real_estate.real_estate_sub_menu_advertise"
+              action="real_estate.action_create_token_wizard"
+              sequence="3"/>
+
 </odoo>

@@ -19,6 +19,7 @@ class RealEstate(models.Model):
     _description = "Real Estate"
     _order = 'property_type_id desc'
 
+    pro_seq = fields.Char(string='Number', readonly=True)
     name = fields.Char(string='Property Type', copy=False, required=True, readonly=False, default=lambda self: _('New'))
     description = fields.Text(string='Description', required=False)
     postcode = fields.Char(string='Postcode', required=True, tracking=True)
@@ -132,3 +133,13 @@ class RealEstate(models.Model):
             if record4.state not in ['new', 'canceled']:
                 raise UserError(_('Only new and canceled properties can be deleted.'))
 
+    @api.model
+    def create(self, vals):
+        vals['pro_seq'] = self.env['ir.sequence'].next_by_code("real.estate")
+        return super(RealEstate, self).create(vals)
+
+    # @api.model
+    # def create(self, vals):
+    #     rec = super(RealEstate, self).create(vals)
+    #     vals['pro_seq'] = self.env['ir.sequence'].next_by_code("real.estate")
+    #     return rec

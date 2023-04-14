@@ -22,7 +22,7 @@
                             <span t-field="property.state"/>
                         </div>
                         <t t-if="property.state == 'new'">
-                            <p>No offers have been made yet:)</p>
+                            <p><b>No offers have been made yet:)</b></p>
                         </t>
                         <t t-if="property.offer_ids">
                             <table class="table">
@@ -32,7 +32,7 @@
                                         <th>Partner</th>
                                         <th>Validity(days)</th>
                                         <th>Deadline</th>
-                                        <th>State</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>

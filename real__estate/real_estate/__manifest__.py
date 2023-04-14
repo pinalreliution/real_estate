@@ -21,7 +21,11 @@
 
         'report/real_estate_offers_reports.xml',
         'report/real_estate_offers_template.xml',
-        'report/real_estate_salesman_template.xml'
+        'report/real_estate_salesman_template.xml',
+
+        'data/ir_sequence_data.xml',
+
+        'wizard/create_token_wizard_view.xml'
     ],
     'demo': [],
     'application': True,

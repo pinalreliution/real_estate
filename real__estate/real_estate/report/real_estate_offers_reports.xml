@@ -14,7 +14,7 @@
 
         <record id="action_report_salesman" model="ir.actions.report">
             <field name="name">Salesman</field>
-            <field name="model">real.estate</field>
+            <field name="model">res.users</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">real_estate.salesman_report_template</field>
             <field name="report_file">real_estate.salesman_report_template</field>

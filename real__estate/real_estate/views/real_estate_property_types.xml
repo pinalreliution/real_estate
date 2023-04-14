@@ -91,6 +91,6 @@
     <menuitem id="setting_sub_menu_property_types"
               name="Property Types"
               parent="real_estate.real_estate_sub_menu_setting"
-              action="action_property_types"
+              action="real_estate.action_property_types"
               sequence="1"/>
 </odoo>
