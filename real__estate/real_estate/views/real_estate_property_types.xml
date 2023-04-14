@@ -81,9 +81,11 @@
         <field name="view_mode">tree,form</field>
     </record>
 
+    <!--  groups="Menu visible only our choice group"  -->
     <menuitem id="real_estate_sub_menu_setting"
               name="Settings"
               parent="real_estate.real_estate_menu"
+              groups="real_estate.real_estate_group_manager"
               sequence="2"/>
 
     <menuitem id="setting_sub_menu_property_types"

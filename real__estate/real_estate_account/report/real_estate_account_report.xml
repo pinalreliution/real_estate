@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="action_inherit_property_offers_report_template" model="ir.actions.report">
+            <field name="name">Property Offers</field>
+            <field name="model">real.estate</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">real_estate_account.inherit_property_offers_report_template</field>
+            <field name="report_file">real_estate_account.inherit_property_offers_report_template</field>
+            <field name="binding_model_id" ref="model_real_estate"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

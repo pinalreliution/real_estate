@@ -9,7 +9,10 @@
     'summary': '',
     'description': """ """,
     'depends': ['real_estate', 'account'],
-    'data': [],
+    'data': [
+        'report/inherit_real_estate_account_template.xml',
+        'report/real_estate_account_report.xml'
+    ],
     'demo': [],
     'application': True,
     'sequence': -100,

@@ -65,7 +65,7 @@ class PropertyOffers(models.Model):
         for rec4 in self:
             rec4.property_id.state = 'offer_received'
             if rec4.property_id.best_price > rec4.price:
-                raise UserError(_("The offer must be higher than best price.."))
+                raise UserError(_("The offer must be higher than best price"))
         return rec5
 
     @api.model

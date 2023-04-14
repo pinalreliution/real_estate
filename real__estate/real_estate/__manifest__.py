@@ -12,11 +12,16 @@
     'data': [
         'security/ir.model.access.csv',
         'security/real_estate_security.xml',
+
         'views/real_estate_properties.xml',
         'views/real_estate_property_types.xml',
         'views/real_estate_property_tags.xml',
         'views/real_estate_property_offers.xml',
-        'views/inherit_res_users.xml'
+        'views/inherit_res_users.xml',
+
+        'report/real_estate_offers_reports.xml',
+        'report/real_estate_offers_template.xml',
+        'report/real_estate_salesman_template.xml'
     ],
     'demo': [],
     'application': True,
