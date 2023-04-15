@@ -8,3 +8,5 @@ class CreateTokenWizard(models.TransientModel):
     _description = 'Create Token Wizard'
 
     name = fields.Char(string='Person Name')
+
+

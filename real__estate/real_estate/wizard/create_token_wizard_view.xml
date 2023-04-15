@@ -9,9 +9,6 @@
                 <group class="oe_title">
                     <field name="name"/>
                 </group>
-                <footer>
-                    <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
-                </footer>
             </form>
         </field>
     </record>
@@ -21,8 +18,19 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">create.token.wizard</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="create_token_wizard_view_form"/>
         <field name="target">new</field>
     </record>
+
+    <!--        Wizard in action menu       -->
+<!--    <record id="action_window_create_token_wizard" model="ir.actions.act_window">-->
+<!--        <field name="name">Create Token</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--        <field name="res_model">create.token.wizard</field>-->
+<!--        <field name="view_mode">form</field>-->
+<!--        <field name="view_id" ref="real_estate.create_token_wizard_view_form"/>-->
+<!--        <field name="binding_model_id" ref="model_real_estate"/>-->
+<!--        <field name="binding_type">form</field>-->
+<!--        <field name="target">new</field>-->
+<!--    </record>-->
 
 </odoo>

@@ -5,6 +5,9 @@ from datetime import datetime, timedelta
 from itertools import groupby
 import json
 
+import action as action
+from lib2to3.fixes.fix_input import context
+
 from odoo import api, fields, models, SUPERUSER_ID, _
 from odoo.exceptions import AccessError, UserError, ValidationError
 from odoo.osv import expression
@@ -138,8 +141,23 @@ class RealEstate(models.Model):
         vals['pro_seq'] = self.env['ir.sequence'].next_by_code("real.estate")
         return super(RealEstate, self).create(vals)
 
-    # @api.model
-    # def create(self, vals):
-    #     rec = super(RealEstate, self).create(vals)
-    #     vals['pro_seq'] = self.env['ir.sequence'].next_by_code("real.estate")
-    #     return rec
+    def action_wizard_button(self):
+        # Other type of call
+        return self.env['ir.actions.act_window']._for_xml_id("real_estate.action_create_token_wizard")
+
+        # return {
+        #     'type': 'ir.actions.act_window',
+        #     'res_model': 'create.token.wizard',
+        #     'view_mode': 'form',
+        #     'target': 'new'
+        # }
+
+    def action_wizard_button_with_context(self):
+        action = self.env["ir.actions.act_window"]._for_xml_id("real_estate.action_wizard_button_with_context")
+        context = {
+            'default_name': self.name,
+            'default_expected_price': self.expected_price,
+            'default_selling_price': self.selling_price,
+        }
+        action['context'] = context
+        return action

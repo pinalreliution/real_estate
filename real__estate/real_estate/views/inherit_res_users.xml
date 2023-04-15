@@ -22,4 +22,9 @@
         <field name="view_mode">tree,form</field>
     </record>
 
+        <!-- remove report from print option from view in -->
+<!--    <record id="real_estate.action_report_salesman" model="ir.actions.report">-->
+<!--        <field name="binding_model_id" eval="False"/>-->
+<!--    </record>-->
+
 </odoo>

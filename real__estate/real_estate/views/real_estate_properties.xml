@@ -78,6 +78,9 @@
                 <header>
                     <button name="action_sold" string="Sold" type="object" states="offer_accepted"/>
                     <button name="action_cancel" string="Cancel" type="object"/>
+                    <button name="action_wizard_button" string="Object type wizard" type="object"/>
+                    <button name="action_wizard_button_with_context" string="Object type wizard with context" type="object"/>
+                    <button name="real_estate.action_create_token_wizard" string="Action type wizard" type="action"/>
                     <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold" nolabel="1"/>
                 </header>
                 <sheet>
@@ -183,6 +186,15 @@
         <field name="view_mode">tree,kanban,form</field>
         <field name="context">{'search_default_filter_state' : 1, 'search_default_filter_property_type_id' : 1}</field>
     </record>
+
+     <record id="action_wizard_button_with_context" model="ir.actions.act_window">
+         <field name="name">Wizard with context</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="res_model">real.estate</field>
+         <field name="view_mode">form</field>
+         <field name="view_id" ref="real_estate.view_properties_form"/>
+         <field name="target">new</field>
+     </record>
 
 
     <menuitem id="real_estate_menu"
