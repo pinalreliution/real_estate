@@ -24,8 +24,9 @@
         'report/real_estate_salesman_template.xml',
 
         'data/ir_sequence_data.xml',
+        'data/schedule_action.xml',
 
-        'wizard/create_token_wizard_view.xml'
+        'wizard/create_token_wizard_view.xml',
     ],
     'demo': [],
     'application': True,

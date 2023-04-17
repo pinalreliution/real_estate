@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from itertools import groupby
 import json
 
@@ -14,6 +14,7 @@ from odoo.osv import expression
 from odoo.tools import float_is_zero, html_keep_url, is_html_empty
 
 from odoo.addons.payment import utils as payment_utils
+import pytz
 
 
 class RealEstate(models.Model):
@@ -27,7 +28,8 @@ class RealEstate(models.Model):
     description = fields.Text(string='Description', required=False)
     postcode = fields.Char(string='Postcode', required=True, tracking=True)
     date_availability = fields.Date(string='Available Form', copy=False, default=lambda self: fields.Date.today())
-    expected_price = fields.Float(string='Expected Price', required=True)
+    user_time_zone = fields.Datetime(string='Date Time')
+    expected_price = fields.Float(string='Expected Price', required=True, default=lambda self: _(2))
     selling_price = fields.Float(string='Selling Price', readonly=True, copy=False)
     bedrooms = fields.Integer(string='Bedrooms', required=False, default=lambda self: _(2))
     living_area = fields.Integer(string='Living Area(sqr)', required=True)
@@ -59,6 +61,7 @@ class RealEstate(models.Model):
     best_price = fields.Float(compute="_compute_offer_ids_price", store=True, string='Best Price')
     company_id = fields.Many2one(comodel_name='res.company', string='Company', required=True,
                                  default=lambda self: self.env.company)
+    cancel_date = fields.Date(string='Cancellation date')
 
     # _sql_constraints = [
     #     ('check_expected_price', 'CHECK(expected_price > 0)',
@@ -143,21 +146,48 @@ class RealEstate(models.Model):
 
     def action_wizard_button(self):
         # Other type of call
-        return self.env['ir.actions.act_window']._for_xml_id("real_estate.action_create_token_wizard")
+        # return self.env['ir.actions.act_window']._for_xml_id("real_estate.action_create_token")
 
-        # return {
-        #     'type': 'ir.actions.act_window',
-        #     'res_model': 'create.token.wizard',
-        #     'view_mode': 'form',
-        #     'target': 'new'
-        # }
-
-    def action_wizard_button_with_context(self):
-        action = self.env["ir.actions.act_window"]._for_xml_id("real_estate.action_wizard_button_with_context")
-        context = {
-            'default_name': self.name,
-            'default_expected_price': self.expected_price,
-            'default_selling_price': self.selling_price,
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'create.token.wizard',
+            'view_mode': 'form',
+            'target': 'new'
         }
-        action['context'] = context
-        return action
+
+    # Schedule Action button
+    def test_schedule(self):
+        schedule = self.search([])
+        for rec in schedule:
+            if rec.state == 'new' and fields.Date.today() == rec.cancel_date:
+                rec.write({'state': 'canceled'})
+
+        # Other method
+        # schedule = self.search([('|', ('state', '=', 'new'), ('cancel_date', '=', 'fields.Date.today()'))])
+        # for rec in schedule:
+        #     rec.write({'state': 'canceled'})
+
+    @api.model
+    def default_get(self, fields):
+        vals = super(RealEstate, self).default_get(fields)
+        vals['cancel_date'] = datetime.now() + timedelta(days=5)
+        return vals
+
+    # User Time Zone Button
+    def action_user_time_zone(self):
+        tz = pytz.timezone(self.env.user.partner_id.tz)
+        utc_time = datetime.now()
+        print("Utc time:", utc_time)
+        tz_time = datetime.now(tz=tz)
+        print("Local Time:", tz_time)
+
+
+    # def action_wizard_button_with_context(self):
+    #     action = self.env["ir.actions.act_window"]._for_xml_id("real_estate.action_wizard_button_with_context")
+    #     context = {
+    #         'default_name': self.name,
+    #         'default_expected_price': self.expected_price,
+    #         'default_selling_price': self.selling_price,
+    #     }
+    #     action['context'] = context
+    #     return action

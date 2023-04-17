@@ -1,36 +1,33 @@
 <?xml version="1.0"?>
 <odoo>
 
-    <record id="create_token_wizard_view_form" model="ir.ui.view">
-        <field name="name">create.token.wizard.view.form</field>
+    <record id="view_create_token_wizard_form" model="ir.ui.view">
+        <field name="name">view.create.token.wizard.form</field>
         <field name="model">create.token.wizard</field>
         <field name="arch" type="xml">
             <form string="Token">
                 <group class="oe_title">
                     <field name="name"/>
+<!--                    <field name="salesman_id"/>-->
+<!--                    <field name="buyer_id"/>-->
+<!--                    <field name="property_type_id"/>-->
+<!--                    <field name="postcode"/>-->
                 </group>
+                <footer>
+                    <button name="action_create_button" type="object" string="Create" class="btn-secondary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                </footer>
             </form>
         </field>
     </record>
 
-    <record id="action_create_token_wizard" model="ir.actions.act_window">
+    <record id="action_create_token" model="ir.actions.act_window">
         <field name="name">Create Token</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">create.token.wizard</field>
         <field name="view_mode">form</field>
+        <field name="view_id" ref="view_create_token_wizard_form"/>
         <field name="target">new</field>
     </record>
-
-    <!--        Wizard in action menu       -->
-<!--    <record id="action_window_create_token_wizard" model="ir.actions.act_window">-->
-<!--        <field name="name">Create Token</field>-->
-<!--        <field name="type">ir.actions.act_window</field>-->
-<!--        <field name="res_model">create.token.wizard</field>-->
-<!--        <field name="view_mode">form</field>-->
-<!--        <field name="view_id" ref="real_estate.create_token_wizard_view_form"/>-->
-<!--        <field name="binding_model_id" ref="model_real_estate"/>-->
-<!--        <field name="binding_type">form</field>-->
-<!--        <field name="target">new</field>-->
-<!--    </record>-->
 
 </odoo>

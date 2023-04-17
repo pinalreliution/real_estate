@@ -16,8 +16,8 @@
                 <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="bedrooms"/>
                 <field name="living_area" optional="hide"/>
-                <field name="expected_price"/>
-                <field name="selling_price"/>
+                <field name="expected_price"  avg="Average of expected price"/>
+                <field name="selling_price" sum="Total of Selling Price"/>
                 <field name="date_availability" optional="hide"/>
                 <field name="state"/>
                 <field name="total_area" optional="hide"/>
@@ -76,11 +76,11 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_sold" string="Sold" type="object" states="offer_accepted"/>
-                    <button name="action_cancel" string="Cancel" type="object"/>
-                    <button name="action_wizard_button" string="Object type wizard" type="object"/>
-                    <button name="action_wizard_button_with_context" string="Object type wizard with context" type="object"/>
-                    <button name="real_estate.action_create_token_wizard" string="Action type wizard" type="action"/>
+                    <button name="action_sold" string="Sold" type="object" states="offer_accepted" class="btn-primary"/>
+                    <button name="action_user_time_zone" string="Time Zone" type="object" class="btn-primary"/>
+                    <button name="action_cancel" string="Cancel" type="object" class="btn-primary"/>
+                    <button name="action_wizard_button" string="Object Button" type="object" class="btn-primary"/>
+                    <button name="%(real_estate.action_create_token)d" type="action" string="Create Token" class="btn-primary"/>
                     <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold" nolabel="1"/>
                 </header>
                 <sheet>
@@ -97,10 +97,12 @@
                         <group>
                             <field name="property_type_id"/>
                             <field name="company_id"/>
-                            <field name="postcode"/>
                             <field name="date_availability"/>
+                            <field name="cancel_date"/>
+<!--                            <field name="user_time_zone"/>-->
                         </group>
                         <group>
+                            <field name="postcode"/>
                             <field name="expected_price"/>
                             <field name="best_price"/>
                             <field name="selling_price"/>
@@ -112,7 +114,8 @@
                                 <field name="description"/>
                                 <field name="bedrooms"/>
                                 <field name="living_area"/>
-                                <field name="facades"/>
+            <!--   show field in developer mode :- used (groups="base.group_no_one") -->
+                                <field name="facades" groups="base.group_no_one"/>
                                 <field name="garage"/>
                                 <field name="garden"/>
                                 <field name="garden_area" attrs="{'invisible': [('garden', '=', False)]}"/>
@@ -187,14 +190,13 @@
         <field name="context">{'search_default_filter_state' : 1, 'search_default_filter_property_type_id' : 1}</field>
     </record>
 
-     <record id="action_wizard_button_with_context" model="ir.actions.act_window">
-         <field name="name">Wizard with context</field>
-         <field name="type">ir.actions.act_window</field>
-         <field name="res_model">real.estate</field>
-         <field name="view_mode">form</field>
-         <field name="view_id" ref="real_estate.view_properties_form"/>
-         <field name="target">new</field>
-     </record>
+<!--     <record id="action_wizard_button_with_context" model="ir.actions.act_window">-->
+<!--         <field name="name">Wizard with context</field>-->
+<!--         <field name="type">ir.actions.act_window</field>-->
+<!--         <field name="res_model">real.estate</field>-->
+<!--         <field name="view_mode">form</field>-->
+<!--         <field name="target">new</field>-->
+<!--     </record>-->
 
 
     <menuitem id="real_estate_menu"
@@ -216,7 +218,7 @@
     <menuitem id="advertise_sub_menu_create_token"
               name="Create Token"
               parent="real_estate.real_estate_sub_menu_advertise"
-              action="real_estate.action_create_token_wizard"
-              sequence="3"/>
+              action="real_estate.action_create_token"
+              sequence="2"/>
 
 </odoo>
