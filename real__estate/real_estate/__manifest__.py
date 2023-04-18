@@ -25,6 +25,7 @@
 
         'data/ir_sequence_data.xml',
         'data/schedule_action.xml',
+        'data/email_template.xml',
 
         'wizard/create_token_wizard_view.xml',
     ],

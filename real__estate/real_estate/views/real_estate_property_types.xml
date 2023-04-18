@@ -38,6 +38,9 @@
                     <h1 class="o_row">
                         <field name="name"/>
                     </h1>
+                    <group>
+                        <field name="ref"/>
+                    </group>
                     <notebook>
                         <page string="Properties">
                             <field name="property_ids">

@@ -77,10 +77,14 @@
             <form>
                 <header>
                     <button name="action_sold" string="Sold" type="object" states="offer_accepted" class="btn-primary"/>
-                    <button name="action_user_time_zone" string="Time Zone" type="object" class="btn-primary"/>
                     <button name="action_cancel" string="Cancel" type="object" class="btn-primary"/>
-                    <button name="action_wizard_button" string="Object Button" type="object" class="btn-primary"/>
-                    <button name="%(real_estate.action_create_token)d" type="action" string="Create Token" class="btn-primary"/>
+                    <button name="action_user_time_zone" string="Time Zone" type="object" class="btn-primary"
+                            attrs="{'invisible': [('state', '=', 'canceled')]}"/>
+                    <button name="action_wizard_button" string="Object Button" type="object" class="btn-primary"
+                            attrs="{'invisible': [('state', '=', 'canceled')]}"/>
+                    <button name="%(real_estate.action_create_token)d" type="action" string="Create Token" class="btn-primary"
+                            attrs="{'invisible': [('state', '=', 'canceled')]}"/>
+                    <button name="action_reset" type="object" string="Reset" states="canceled" class="btn-primary"/>
                     <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold" nolabel="1"/>
                 </header>
                 <sheet>

@@ -22,8 +22,10 @@ class RealEstate(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Real Estate"
     _order = 'property_type_id desc'
+    _rec_name = 'ref'
 
     pro_seq = fields.Char(string='Number', readonly=True)
+    ref = fields.Char(string='Reference')
     name = fields.Char(string='Property Type', copy=False, required=True, readonly=False, default=lambda self: _('New'))
     description = fields.Text(string='Description', required=False)
     postcode = fields.Char(string='Postcode', required=True, tracking=True)
@@ -109,6 +111,11 @@ class RealEstate(models.Model):
                 raise UserError("Sold Properties can not be canceled.")
             return record3.write({'state': 'canceled'})
 
+    def action_reset(self):
+        for record4 in self:
+            if record4.state == 'canceled':
+                return True
+
     @api.constrains('selling_price')
     def _check_selling_price(self):
         for price in self:
@@ -183,11 +190,11 @@ class RealEstate(models.Model):
 
 
     # def action_wizard_button_with_context(self):
-    #     action = self.env["ir.actions.act_window"]._for_xml_id("real_estate.action_wizard_button_with_context")
+    #     actions = self.env["ir.actions.act_window"]._for_xml_id("real_estate.action_wizard_button_with_context")
     #     context = {
     #         'default_name': self.name,
     #         'default_expected_price': self.expected_price,
     #         'default_selling_price': self.selling_price,
     #     }
-    #     action['context'] = context
-    #     return action
+    #     actions['context'] = context
+    #     return actions
