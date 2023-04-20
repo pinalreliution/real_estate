@@ -18,6 +18,8 @@
         'views/real_estate_property_tags.xml',
         'views/real_estate_property_offers.xml',
         'views/inherit_res_users.xml',
+        'views/inherit_sale_order.xml',
+        'views/server_action.xml',
 
         'report/real_estate_offers_reports.xml',
         'report/real_estate_offers_template.xml',

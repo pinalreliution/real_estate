@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!--     Inherit And Add Field to Existing Views   -->
+    <record id="view_inherit_sale_order_form" model="ir.ui.view">
+        <field name="name">view.inherit.sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="postcode"/>
+            </field>
+        </field>
+    </record>
+
+<!--    Inherit And Change Existing Field Properties In Odoo   -->
+    <record id="view_inherit_res_partner_form" model="ir.ui.view">
+        <field name="name">view.inherit.res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="mobile" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+            <field name="email" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="website" position="attributes">
+                <attribute name="attrs">{'required': [('user_id', '=', True)]}</attribute>
+            </field>
+        </field>
+    </record>
+
+<!--    Inherit Existing Actions in Odoo   -->
+    <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+        <field name="name">Order Details</field>
+    </record>
+
+</odoo>

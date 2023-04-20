@@ -8,10 +8,6 @@
             <form string="Token">
                 <group class="oe_title">
                     <field name="name"/>
-                    <field name="salesman_id"/>
-                    <field name="buyer_id"/>
-<!--                    <field name="property_type_id"/>-->
-                    <field name="postcode"/>
                 </group>
                 <footer>
                     <button name="action_create_button" type="object" string="Create" class="btn-secondary"/>

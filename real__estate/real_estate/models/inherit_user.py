@@ -15,3 +15,11 @@ class InheritResUsers(models.Model):
 
     property_ids = fields.One2many(comodel_name='real.estate', inverse_name='salesman_id',
                                    domain="[('state','in', ['new','offer_received'])]")
+    # email = fields.Char(string='Email')
+
+
+# Inherit and add New Value To Selection Field Odoo
+class InheritResPartner(models.Model):
+    _inherit = 'res.partner'
+
+    company_type = fields.Selection(selection_add=[('real_estate', 'Real Estate')])

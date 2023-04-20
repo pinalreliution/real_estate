@@ -188,6 +188,47 @@ class RealEstate(models.Model):
         tz_time = datetime.now(tz=tz)
         print("Local Time:", tz_time)
 
+# Server Action
+    def action_estate(self):
+        print("Heyyyy....")
+        return {
+            'name': 'Real Estate Server Action',
+            'view_type': 'form',
+            'res_model': 'real.estate',
+            'view_id': False,
+            'type': 'ir.actions.act_window',
+            'view_mode': 'tree,form',
+        }
+
+    # Mail button action
+    # if Immediate mail send then used force_send attribute and in this time email status is delivering
+    def action_send_email(self):
+        # template = self.env.ref('real_estate.email_template_real_estate')
+        # for rec1 in self:
+        #     if rec1.buyer_id.email:
+        #         template.send_mail(rec1.id, force_send=True)
+        ctx = {
+            'default_model': 'real.estate',
+            'force_email': True,
+        }
+        return {
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': 'mail.compose.message',
+            'view_id': False,
+            'target': 'new',
+            'context': ctx,
+        }
+
+# How to update record field values of current record
+#     def action_update_button(self):
+#         active_id = self._context.get('active_id')
+#         print(active_id)
+#         upd_var = self.env['real.estate'].browse(active_id)
+#         print(upd_var)
+#         vals = {
+#         }
+
 
     # def action_wizard_button_with_context(self):
     #     actions = self.env["ir.actions.act_window"]._for_xml_id("real_estate.action_wizard_button_with_context")
