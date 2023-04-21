@@ -28,7 +28,7 @@ class RealEstate(models.Model):
     ref = fields.Char(string='Reference')
     name = fields.Char(string='Property Type', copy=False, required=True, readonly=False, default=lambda self: _('New'))
     description = fields.Text(string='Description', required=False)
-    postcode = fields.Char(string='Postcode', required=True, tracking=True)
+    postcode = fields.Char(string='Postcode', required=True)
     date_availability = fields.Date(string='Available Form', copy=False, default=lambda self: fields.Date.today())
     user_time_zone = fields.Datetime(string='Date Time')
     expected_price = fields.Float(string='Expected Price', required=True, default=lambda self: _(2))

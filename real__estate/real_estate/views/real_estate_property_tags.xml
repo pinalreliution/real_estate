@@ -40,7 +40,7 @@
 
     <menuitem id="setting_sub_menu_property_tags"
               name="Property Tags"
-              parent="real_estate.real_estate_sub_menu_setting"
+              parent="real_estate.real_estate_sub_menu_configuration"
               action="action_property_tags"
               sequence="2"/>
 </odoo>

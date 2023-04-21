@@ -19,6 +19,7 @@
         'views/real_estate_property_offers.xml',
         'views/inherit_res_users.xml',
         'views/inherit_sale_order.xml',
+        'views/inherit_real_estate_config_setting.xml',
         'views/server_action.xml',
 
         'report/real_estate_offers_reports.xml',
@@ -28,6 +29,7 @@
         'data/ir_sequence_data.xml',
         'data/schedule_action.xml',
         'data/email_template.xml',
+        'data/real_estate_data.xml',
 
         'wizard/create_token_wizard_view.xml',
     ],

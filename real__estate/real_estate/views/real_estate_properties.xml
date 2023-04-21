@@ -84,7 +84,7 @@
                             attrs="{'invisible': [('state', '=', 'canceled')]}"/>
                     <button name="%(real_estate.action_create_token)d" type="action" string="Create Token" class="btn-primary"
                             attrs="{'invisible': [('state', '=', 'canceled')]}"/>
-                    <button name="action_update_button" type="object" string="Update Form" class="btn-primary"/>
+<!--                    <button name="action_update_button" type="object" string="Update Form" class="btn-primary"/>-->
                     <button name="action_reset" type="object" string="Reset" states="canceled" class="btn-primary"/>
                     <button name="action_send_email" type="object" string="Send mail" class="btn-primary"/>
                     <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold" nolabel="1"/>

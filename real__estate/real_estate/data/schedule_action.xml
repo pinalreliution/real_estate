@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="meeting_schedule" model="ir.cron">
+    <record id="real_estate_schedule" model="ir.cron">
         <field name="name">Real Estate Schedule</field>
         <field name="model_id" ref="model_real_estate"/>
         <field name="type">ir.actions.server</field>

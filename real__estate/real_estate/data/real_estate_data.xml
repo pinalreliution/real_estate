@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+<!--        <record id="type_form_default_data" model="property.types">-->
+<!--        </record>-->
+
+    </data>
+</odoo>
