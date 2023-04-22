@@ -12,13 +12,11 @@
                     <h2>Real Estate Management</h2>
                     <div class="row mt16 o_settings_container">
                         <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_left_pane">
-                                <field name="policy"/>
-                            </div>
                             <div class="o_setting_right_pane">
                                 <label for="policy"/>
                                 <div class="text-muted">
                                     Custom field.
+                                    <field name="policy" widget="html"/>
                                 </div>
                             </div>
                         </div>

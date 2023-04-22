@@ -64,6 +64,7 @@ class RealEstate(models.Model):
     company_id = fields.Many2one(comodel_name='res.company', string='Company', required=True,
                                  default=lambda self: self.env.company)
     cancel_date = fields.Date(string='Cancellation date')
+    note = fields.Html(string='Note')
 
     # _sql_constraints = [
     #     ('check_expected_price', 'CHECK(expected_price > 0)',

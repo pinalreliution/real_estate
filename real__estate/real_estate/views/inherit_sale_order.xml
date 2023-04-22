@@ -49,13 +49,11 @@
         <field name="arch" type="xml">
             <xpath expr="//div//div[3]//div[8]" position="after">
                 <div class="col-12 col-lg-6 o_setting_box" id="custom_field">
-                    <div class="o_setting_left_pane">
-                        <field name="policy"/>
-                    </div>
                     <div class="o_setting_right_pane">
                         <label for="policy"/>
                         <div class="text-muted">
                             Custom field.
+                            <field name="policy" widget="html"/>
                         </div>
                     </div>
                 </div>

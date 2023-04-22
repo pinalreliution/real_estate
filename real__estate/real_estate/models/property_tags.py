@@ -30,5 +30,5 @@ class PropertyTags(models.Model):
     @api.constrains('name')
     def _check_name(self):
         for tag in self:
-            if tag.name:
+            if tag.name == self.name:
                 raise ValidationError("A Property Tag name must be unique.")

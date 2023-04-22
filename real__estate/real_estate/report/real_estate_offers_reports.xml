@@ -24,5 +24,15 @@
             <field name="binding_type">report</field>
         </record>
 
+<!--        <record id="action_report_property_offers_xls" model="ir.actions.report">-->
+<!--            <field name="name">Properties / Offers Excel</field>-->
+<!--            <field name="model">real.estate</field>-->
+<!--            <field name="report_type">xlsx</field>-->
+<!--            <field name="report_name">real_estate.property_offers_report_template_xls</field>-->
+<!--            <field name="report_file">real_estate.property_offers_report_template_xls</field>-->
+<!--            <field name="binding_model_id" ref="model_real_estate"/>-->
+<!--            <field name="binding_type">report</field>-->
+<!--        </record>-->
+
     </data>
 </odoo>

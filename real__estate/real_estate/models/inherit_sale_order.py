@@ -25,7 +25,7 @@ class InheritResConfig(models.TransientModel):
 
     def set_values(self):
         rec = super(InheritResConfig, self).set_values()
-        print('rec',rec)
+        print('rec', rec)
         self.env['ir.config_parameter'].set_param('real_estate.policy', self.policy)
         return rec
 
