@@ -23,17 +23,11 @@ class InheritResConfig(models.TransientModel):
     # policy = fields.Char(string='Policy')
     policy = fields.Html(string='Custom Policy')
 
-    def set_values(self):
-        rec = super(InheritResConfig, self).set_values()
-        print('rec', rec)
-        self.env['ir.config_parameter'].set_param('real_estate.policy', self.policy)
-        return rec
-
     @api.model
     def get_values(self):
         res = super(InheritResConfig, self).get_values()
         print('res', res)
-        ICPSudo = self.env['ir.config_parameter']
+        ICPSudo = self.env['ir.config_parameter'].sudo()
         print('vals', ICPSudo)
         polices = ICPSudo.get_param('real_estate.policy')
         print('policy', polices)
@@ -41,3 +35,9 @@ class InheritResConfig(models.TransientModel):
             policy=polices
         )
         return res
+
+    def set_values(self):
+        rec = super(InheritResConfig, self).set_values()
+        print('rec', rec)
+        self.env['ir.config_parameter'].set_param('real_estate.policy', self.policy)
+        return rec

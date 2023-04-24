@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="base.module_category_real_estate_brokerage" model="ir.module.category">
+    <record id="module_category_real_estate_brokerage" model="ir.module.category">
         <field name="name">Real Estate Management</field>
         <field name="description">Category for real estate management....</field>
     </record>
@@ -9,13 +9,13 @@
     <record id="real_estate_group_user" model="res.groups">
         <field name="name">Agent</field>
         <field name="comment">Create new record....</field>
-        <field name="category_id" ref="base.module_category_real_estate_brokerage"/>
+        <field name="category_id" ref="module_category_real_estate_brokerage"/>
     </record>
 
     <record id="real_estate_group_manager" model="res.groups">
         <field name="name">Manager</field>
         <field name="comment">Create new record....</field>
-        <field name="category_id" ref="base.module_category_real_estate_brokerage"/>
+        <field name="category_id" ref="real_estate.module_category_real_estate_brokerage"/>
         <!--   Selection of Access Right    -->
         <field name="implied_ids" eval="[(4, ref('real_estate_group_user'))]"/>
     </record>
