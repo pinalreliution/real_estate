@@ -82,9 +82,8 @@
                             attrs="{'invisible': [('state', '=', 'canceled')]}"/>
                     <button name="action_wizard_button" string="Object Button" type="object" class="btn-primary"
                             attrs="{'invisible': [('state', '=', 'canceled')]}"/>
-                    <button name="%(real_estate.action_create_token)d" type="action" string="Create Token" class="btn-primary"
+                    <button name="%(real_estate.action_update_form)d" type="action" string="Action Button" class="btn-primary"
                             attrs="{'invisible': [('state', '=', 'canceled')]}"/>
-<!--                    <button name="action_update_button" type="object" string="Update Form" class="btn-primary"/>-->
                     <button name="action_reset" type="object" string="Reset" states="canceled" class="btn-primary"/>
                     <button name="action_send_email" type="object" string="Send mail" class="btn-primary"/>
                     <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold" nolabel="1"/>
@@ -225,11 +224,5 @@
               parent="real_estate.real_estate_sub_menu_advertise"
               action="real_estate.action_properties"
               sequence="2"/>
-
-<!--    <menuitem id="advertise_sub_menu_create_token"-->
-<!--              name="Create Token"-->
-<!--              parent="real_estate.real_estate_sub_menu_advertise"-->
-<!--              action="real_estate.action_create_token"-->
-<!--              sequence="2"/>-->
 
 </odoo>

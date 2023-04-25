@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_update_form_wizard_form" model="ir.ui.view">
+        <field name="name">view.update.form.wizard.form</field>
+        <field name="model">create.token.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Update Form">
+                <group>
+                    <group>
+                        <field name="garden_area"/>
+                    </group>
+                    <footer>
+                        <button name="action_update_button" type="object" string="Update" class="btn-primary"
+                                data-hotkey="q"/>
+                        <button string="Cancel" type="object" special="cancel" data-hotkey="z" class="btn-secondary"/>
+                    </footer>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_update_form" model="ir.actions.act_window">
+        <field name="name">Update Form</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">create.token.wizard</field>
+        <field name="view_mode">form</field>
+<!--        <field name="view_id" ref="view_update_form_wizard_form"/>-->
+        <field name="target">new</field>
+    </record>
+
+<!--Display in action menu   -->
+    <record id="action_window_update_form" model="ir.actions.act_window">
+        <field name="name">Update Form</field>
+        <field name="res_model">create.token.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_update_form_wizard_form"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="real_estate.model_real_estate"/>
+        <field name="binding_view_types">form</field>
+    </record>
+
+</odoo>

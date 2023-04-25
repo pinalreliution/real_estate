@@ -13,6 +13,14 @@
         'security/ir.model.access.csv',
         'security/real_estate_security.xml',
 
+        'data/ir_sequence_data.xml',
+        'data/schedule_action.xml',
+        'data/email_template.xml',
+        'data/real_estate_data.xml',
+        # 'data/property_tags.csv',
+
+        'wizard/real_estate_update_form.xml',
+
         'views/real_estate_properties.xml',
         'views/real_estate_property_types.xml',
         'views/real_estate_property_tags.xml',
@@ -25,13 +33,6 @@
         'report/real_estate_offers_reports.xml',
         'report/real_estate_offers_template.xml',
         'report/real_estate_salesman_template.xml',
-
-        'data/ir_sequence_data.xml',
-        'data/schedule_action.xml',
-        'data/email_template.xml',
-        'data/real_estate_data.xml',
-
-        'wizard/create_token_wizard_view.xml',
     ],
     'demo': [],
     'application': True,

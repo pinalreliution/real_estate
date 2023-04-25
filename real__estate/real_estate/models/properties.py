@@ -114,8 +114,20 @@ class RealEstate(models.Model):
 
     def action_reset(self):
         for record4 in self:
+            print(record4)
             if record4.state == 'canceled':
-                return True
+                return record4.write({
+                    'state': 'new',
+                    'name': False,
+                    'description': False,
+                    'postcode': False,
+                    'date_availability': False,
+                    'expected_price': False,
+                    'selling_price': False,
+                    'living_area': False,
+                    'garden': False,
+                    'garden_area': False,
+                })
 
     @api.constrains('selling_price')
     def _check_selling_price(self):
@@ -154,7 +166,7 @@ class RealEstate(models.Model):
 
     def action_wizard_button(self):
         # Other type of call
-        # return self.env['ir.actions.act_window']._for_xml_id("real_estate.action_create_token")
+        # return self.env['ir.actions.act_window']._for_xml_id("real_estate.action_update_form")
 
         return {
             'type': 'ir.actions.act_window',
@@ -220,15 +232,6 @@ class RealEstate(models.Model):
             'target': 'new',
             'context': ctx,
         }
-
-# How to update record field values of current record
-#     def action_update_button(self):
-#         active_id = self._context.get('active_id')
-#         print(active_id)
-#         upd_var = self.env['real.estate'].browse(active_id)
-#         print(upd_var)
-#         vals = {
-#         }
 
 
     # def action_wizard_button_with_context(self):
