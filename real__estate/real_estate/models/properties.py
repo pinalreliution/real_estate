@@ -65,6 +65,8 @@ class RealEstate(models.Model):
                                  default=lambda self: self.env.company)
     cancel_date = fields.Date(string='Cancellation date')
     note = fields.Html(string='Note')
+    partner_id = fields.Many2one(comodel_name='res.partner', string='Customer')
+    order_id = fields.Many2one(comodel_name='sale.order', string='Sale Order')
 
     # _sql_constraints = [
     #     ('check_expected_price', 'CHECK(expected_price > 0)',
@@ -72,6 +74,12 @@ class RealEstate(models.Model):
     #     ('check_selling_price', 'CHECK(selling_price > 0)',
     #      'A property selling price must be strictly positive')
     # ]
+
+    # Onchange domain
+    @api.onchange("partner_id")
+    def _onchange_partner_id(self):
+        for offer in self:
+            return {'domain': {'order_id': [('partner_id', '=', offer.partner_id.id)]}}
 
     @api.onchange("garden")
     def _onchange_garden(self):
@@ -116,18 +124,7 @@ class RealEstate(models.Model):
         for record4 in self:
             print(record4)
             if record4.state == 'canceled':
-                return record4.write({
-                    'state': 'new',
-                    'name': False,
-                    'description': False,
-                    'postcode': False,
-                    'date_availability': False,
-                    'expected_price': False,
-                    'selling_price': False,
-                    'living_area': False,
-                    'garden': False,
-                    'garden_area': False,
-                })
+                return record4.env.ref('real_estate.real_estate_sever_action')
 
     @api.constrains('selling_price')
     def _check_selling_price(self):
